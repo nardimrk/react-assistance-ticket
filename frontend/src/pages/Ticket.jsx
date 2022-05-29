@@ -32,7 +32,7 @@ Modal.setAppElement('#root')
 function Ticket() {
   const [modalIsOpen, setModalIsOpen] = useState(false)
   const [noteText, setNoteText] = useState('')
-  const { ticket, isLoading, isSuccess, isError, message } = useSelector(
+  const { ticket, isLoading, isError, message } = useSelector(
     (state) => state.tickets
   )
 
@@ -40,7 +40,7 @@ function Ticket() {
     (state) => state.notes
   )
 
-  const params = useParams()
+  //const params = useParams()
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { ticketId } = useParams()
@@ -67,6 +67,7 @@ function Ticket() {
     e.preventDefault()
     dispatch(createNote({ noteText, ticketId }))
     closeModal()
+    dispatch(notesReset(''))
   }
 
   // Open/close modal
